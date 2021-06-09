@@ -1,0 +1,30 @@
+--  devuelva una lista de usuarios junto con los nombres de sus amigos.
+select users.first_name, users.last_name, user2.first_name as firend_first_name, user2.last_name as friend_last_name
+from users
+join friendships on users.id = user_id
+join users as user2 on user2.id = friend_id;
+-- 1.-
+select concat(users.first_name," ",users.last_name) as Friends
+from users
+join friendships on users.id = user_id
+where friendships.friend_id = 4;
+-- 2.-
+select count(id) as todas_las_amistades from friendships;
+-- 3.- 
+select count(user_id) from friendships where user_id = 1;
+-- 4.- 
+insert into users (first_name,last_name) values("Gabriel","Tapia");
+insert into friendships (user_id,friend_id) values(6,2);
+insert into friendships (user_id,friend_id) values(6,4);
+insert into friendships (user_id,friend_id) values(6,5);
+-- 5.-
+select concat(users.first_name," ",users.last_name) as Amigos 
+from users
+join friendships on users.id = user_id
+where friend_id = 2 order by Amigos asc;
+-- 6.- 
+delete from friendships where friend_id = 5 and user_id = 2;
+-- 7.-
+select users.first_name, users.last_name
+from users
+join friendships on users.id = user_id;
